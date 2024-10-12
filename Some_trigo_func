@@ -1,0 +1,242 @@
+#include <iostream>
+
+#include <stdio.h>
+
+float calc_cos(float reg);// function prototype
+
+float calc_sin(float reg);
+
+float calc_tan(float reg);
+
+const  float PI=3.1415;
+
+
+
+int main(int argc, char** argv) 
+
+{
+
+	int choice;
+
+	int deg;
+
+	std::cout<<"Enter angle in degree\n";
+
+	std::cin>>deg;
+
+	std::cout<<"choose which trigonometry opreation you want to do\n";
+
+	std::cout<<"1.cos\n2.sin\n3.tan\n";
+
+	std::cin>>choice;
+
+	float reg=deg*(PI/180.0);
+
+	switch(choice)
+
+	{
+
+		case 1:
+
+		{
+
+			std::cout<<"The cosine of "<<deg<<" is "<<calc_cos(reg);
+
+			break;
+
+		}
+
+		case 2:
+
+		{
+
+			std::cout<<"The sin of "<<deg<<" is "<<calc_cos(reg);
+
+			break;
+
+		}
+
+		case 3:{
+
+			std::cout<<"The tan of "<<deg<<" is "<<calc_tan(reg);
+
+			break;
+
+		}
+
+		default :
+
+		{
+
+			std::cout<<"wrong input";
+
+			
+
+			break;
+
+		}
+
+	}
+
+	return 0;
+
+}
+
+
+
+int i,j,n;     //for the looping...      // to determine how many times the main loop should loop   
+
+float Reg_to_pow;//multiplication of the power needed 	
+
+//function implimentation
+
+float calc_cos(float reg)
+
+{
+
+	float cos_func=1.0;
+
+	for(n=1;n<10;n++)//to get the cosine of a number 
+
+	{
+
+		Reg_to_pow=1.0;
+
+		if(n==0)
+
+		{
+
+		Reg_to_pow=reg;	
+
+		}
+
+		else
+
+		{
+
+		for(i=0;i<=(2*n)-1;i++)// to calculate the power of the degree 
+
+		{
+
+		Reg_to_pow=Reg_to_pow*reg;//to get reg to a power	
+
+		}
+
+		}	
+
+	    double  fact_deno=1.0;//to store the value of the deneminator needed in calculating		
+
+		for(j=1;j<=(2*n);j++)//to calculate the factorial present on the denominator
+
+		{
+
+			fact_deno=fact_deno*j;//to calc (2*n);
+
+		}
+
+		float num_to_sum=Reg_to_pow/fact_deno;
+
+		if((n%2)==0)
+
+		{
+
+			cos_func=cos_func+num_to_sum;
+
+		}
+
+		else
+
+		{	
+
+			cos_func=cos_func-num_to_sum;
+
+        }
+
+	}
+
+	return cos_func;
+
+}
+
+
+
+float calc_sin(float reg)
+
+{
+
+	float sin_func=0.0;
+
+	for(n=0;n<10;n++)//to get the cosine of a number 
+
+	{
+
+		Reg_to_pow=1.0;
+
+		if(n==0)
+
+		{
+
+		Reg_to_pow=reg;	
+
+		}
+
+		else
+
+		{
+
+		for(i=0;i<(2*n)+1;i++)// to calculate the power of the degree 
+
+		{
+
+		Reg_to_pow=Reg_to_pow*reg;//to get reg to a power	
+
+		}
+
+		}
+
+		double  fact_deno=1.0;//to store the value of the deneminator needed in calculating		
+
+		for(j=1;j<=(2*n)+1;j++)//to calculate the factorial present on the denominator
+
+		{
+
+			fact_deno=fact_deno*j;//to calc (2*n);
+
+		}
+
+		float num_to_sum=Reg_to_pow/fact_deno;	
+
+		if((n%2)==0)
+
+		{
+
+			sin_func=sin_func+num_to_sum;
+
+		}
+
+		else
+
+		{	
+
+			sin_func=sin_func-num_to_sum;
+
+        }
+
+	}
+
+	return sin_func;
+
+}
+
+
+
+float calc_tan(float reg)
+
+{
+
+	float r=reg;
+
+	return (calc_sin(r)/calc_cos(r));
+
+}
+}
